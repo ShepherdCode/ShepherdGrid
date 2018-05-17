@@ -3,6 +3,8 @@
 ## Planning
 * Cluster sets of identical desktop computers previously used in classrooms.
 * Create a Beowulf cluster supporting distributed processing with local storage.
+* Use existing rack mounting in CME server closet.
+* Provision one switch and sufficient ethernet cabling.
 
 ## Batch control
 * SGE
