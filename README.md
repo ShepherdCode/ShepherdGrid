@@ -16,3 +16,10 @@
     * Scyld [Documentation](https://www.penguincomputing.com/documentation/scyld-clusterware/7/admin-guide/index.html)
     * [News](http://www.dataversity.net/penguin-computing-announces-scyld-clusterware-7-large-clusters/): Penguin Computing Announces Scyld ClusterWare 7 for Large Clusters (Jan 2017)
     * Support for PBS/Torque and others including SGE
+    
+## Node configuration
+* 450 GB disk
+* Win10 already installed and auto updated. We could overwrite this to reclaim the full disk for Linux.
+* Ubuntu.
+    * We test installed Ubuntu on one node. The node now has dual boot. Booting into Ubuntu works. (5/14/18)
+
