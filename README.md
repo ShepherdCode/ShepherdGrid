@@ -6,8 +6,8 @@
 * Use existing rack mounting in CME server closet.
 * Provision one switch and sufficient ethernet cabling.
 
-## Batch control
-* SGE
+## Network software
+* SGE batch control
     * [Wikipedia](https://en.wikipedia.org/wiki/Oracle_Grid_Engine)
     * Open source
     * Commercial support by Oracle ended 2010
@@ -18,7 +18,10 @@
     * Scyld [Documentation](https://www.penguincomputing.com/documentation/scyld-clusterware/7/admin-guide/index.html)
     * [News](http://www.dataversity.net/penguin-computing-announces-scyld-clusterware-7-large-clusters/): Penguin Computing Announces Scyld ClusterWare 7 for Large Clusters (Jan 2017)
     * Support for PBS/Torque and others including SGE
-    
+* MPI message passing interface
+    * [Wikipedia](https://en.wikipedia.org/wiki/Message_Passing_Interface)
+    * javaMPI API [spec](https://www.open-mpi.org/papers/mpi-java-spec/) (2016)
+
 ## Node configuration
 * 450 GB disk
 * Win10 already installed and auto updated. We could overwrite this to reclaim the full disk for Linux.
