@@ -11,7 +11,7 @@
     * Building a simple Beowulf cluster. [How to](https://www-users.cs.york.ac.uk/~mjf/pi_cluster/src/Building_a_simple_Beowulf_cluster.html) by Serrano Pereira.
 * Slurm
     * Invik [blog](https://www.invik.xyz/work/Slurm-on-Ubuntu-Trusty/)
-    * 
+    * Slurm for Ubuntu [package](https://packages.ubuntu.com/search?keywords=slurm-wlm)
 * MPI message passing interface
     * [Wikipedia](https://en.wikipedia.org/wiki/Message_Passing_Interface)
     * javaMPI API [spec](https://www.open-mpi.org/papers/mpi-java-spec/) (2016)
