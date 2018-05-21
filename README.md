@@ -7,20 +7,25 @@
 * Provision one switch and sufficient ethernet cabling.
 
 ## Network software
+* Basics
+    * Building a simple Beowulf cluster. [How to](https://www-users.cs.york.ac.uk/~mjf/pi_cluster/src/Building_a_simple_Beowulf_cluster.html) by Serrano Pereira.
+* Slurm
+    * Invik [blog](https://www.invik.xyz/work/Slurm-on-Ubuntu-Trusty/)
+    * 
+* MPI message passing interface
+    * [Wikipedia](https://en.wikipedia.org/wiki/Message_Passing_Interface)
+    * javaMPI API [spec](https://www.open-mpi.org/papers/mpi-java-spec/) (2016)
 * SGE batch control
     * [Wikipedia](https://en.wikipedia.org/wiki/Oracle_Grid_Engine)
     * Open source
     * Commercial support by Oracle ended 2010
     * Support by [Open Grid Scheuduler](http://gridscheduler.sourceforge.net/) lacks updates since 2013
     * Commercial version by [Univa](http://www.univa.com/products/)
-* Scyld ClusterWare
+* Scyld ClusterWare (commercial software)
     * [Penguin Computing](https://www.penguincomputing.com/support/documentation/)
     * Scyld [Documentation](https://www.penguincomputing.com/documentation/scyld-clusterware/7/admin-guide/index.html)
     * [News](http://www.dataversity.net/penguin-computing-announces-scyld-clusterware-7-large-clusters/): Penguin Computing Announces Scyld ClusterWare 7 for Large Clusters (Jan 2017)
     * Support for PBS/Torque and others including SGE
-* MPI message passing interface
-    * [Wikipedia](https://en.wikipedia.org/wiki/Message_Passing_Interface)
-    * javaMPI API [spec](https://www.open-mpi.org/papers/mpi-java-spec/) (2016)
 
 ## Node configuration
 * 450 GB disk
