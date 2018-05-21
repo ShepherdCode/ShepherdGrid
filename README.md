@@ -16,7 +16,8 @@
 * We installed Unbuntu [Server](https://www.ubuntu.com/download/server) 18.04 LTS from USB to 3 nodes: shep1, shep2, shep3.
 
 ## Slrum
-* sudo apt-get install slurm-wlm (we could not find the slurm-llnl for ubuntu) from [packages](https://packages.ubuntu.com/bionic/slurm-wlm)
+* ```sudo apt-get install slurm-wlm```
+We could not find the slurm-llnl for ubuntu) from [packages](https://packages.ubuntu.com/bionic/slurm-wlm)
 
 ## Network software
 * Basics
