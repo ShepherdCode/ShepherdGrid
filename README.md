@@ -24,9 +24,10 @@
 
 ## Node configuration
 * 450 GB disk
-* Win10 already installed and auto updated. We could overwrite this to reclaim the full disk for Linux.
+* Win10 overwritten. If we ever needed Windows back, our department has the original Win10 image disk.
 * Ubuntu.
     * We test installed Ubuntu on one node. The node now has dual boot. Booting into Ubuntu works. (5/14/18)
+    * We installed Ubuntu over Windows on 3 nodes: Shep1, Shep2, Shep3. (5/21/18)
     
 ## Contact
 * Professor Jason Miller
