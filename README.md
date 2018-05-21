@@ -6,6 +6,15 @@
 * Use existing rack mounting in CME server closet.
 * Provision one switch and sufficient ethernet cabling.
 
+## Nodes
+* Dell Optiplex 7010, Intel Core i7-3770 (3.4 GHz) with 8 GB RAM and 500 GB disk.
+* Win10 overwritten. If we ever needed Windows back, our department has the original Win10 image disk.
+
+## Ubuntu
+* We test installed Ubuntu desktop on one node. The node now has dual boot. Booting into Ubuntu works. (5/14/18)
+* We installed Ubuntu desktop over Windows on 3 nodes: Shep1, Shep2, Shep3. (5/21/18)
+* Try to install Unbuntu Server.
+
 ## Network software
 * Basics
     * Building a simple Beowulf cluster. [How to](https://www-users.cs.york.ac.uk/~mjf/pi_cluster/src/Building_a_simple_Beowulf_cluster.html) by Serrano Pereira.
@@ -27,13 +36,6 @@
     * [News](http://www.dataversity.net/penguin-computing-announces-scyld-clusterware-7-large-clusters/): Penguin Computing Announces Scyld ClusterWare 7 for Large Clusters (Jan 2017)
     * Support for PBS/Torque and others including SGE
 
-## Node configuration
-* 450 GB disk
-* Win10 overwritten. If we ever needed Windows back, our department has the original Win10 image disk.
-* Ubuntu.
-    * We test installed Ubuntu on one node. The node now has dual boot. Booting into Ubuntu works. (5/14/18)
-    * We installed Ubuntu over Windows on 3 nodes: Shep1, Shep2, Shep3. (5/21/18)
-    
 ## Contact
 * Professor Jason Miller
 
