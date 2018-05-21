@@ -13,7 +13,7 @@
 ## Ubuntu
 * We test installed Ubuntu desktop on one node. The node now has dual boot. Booting into Ubuntu works. (5/14/18)
 * We installed Ubuntu desktop over Windows on 3 nodes: Shep1, Shep2, Shep3. (5/21/18)
-* Try to install Unbuntu Server.
+* We installed Unbuntu [Server](https://www.ubuntu.com/download/server) 18.04 LTS from USB to 3 nodes: shep1, shep2, shep3.
 
 ## Network software
 * Basics
@@ -35,6 +35,8 @@
     * Scyld [Documentation](https://www.penguincomputing.com/documentation/scyld-clusterware/7/admin-guide/index.html)
     * [News](http://www.dataversity.net/penguin-computing-announces-scyld-clusterware-7-large-clusters/): Penguin Computing Announces Scyld ClusterWare 7 for Large Clusters (Jan 2017)
     * Support for PBS/Torque and others including SGE
+* LCM
+    * Linux Cluster Manager [LCM](http://linuxcm.sourceforge.net/)
 
 ## Contact
 * Professor Jason Miller
