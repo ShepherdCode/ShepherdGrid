@@ -22,13 +22,16 @@ See this [argument](https://askubuntu.com/questions/53822/how-do-you-run-ubuntu-
 and this [guide](https://help.ubuntu.com/community/ServerGUI).
 
 ## Slrum
-* Much documentation recommends slurm-llnl which runs the [cluster](https://computing.llnl.gov/tutorials/linux_clusters/) at Lawrence Livermore National Labs. That version may be deprecated. We could find an installer for it for Ubuntu. We used WLM instead. It creates a /etc/slurm-llnl directory so perhaps WLM is son-of-llnl.
+* Much documentation recommends slurm-llnl which runs the [cluster](https://computing.llnl.gov/tutorials/linux_clusters/) at Lawrence Livermore National Labs. 
+That version may be deprecated. We could not find an installer for it for Ubuntu. 
+We used WLM instead. It creates a /etc/slurm-llnl directory so perhaps WLM is son-of-llnl.
 * ```sudo apt-get install slurm-wlm```
 from [packages](https://packages.ubuntu.com/bionic/slurm-wlm) 
 This installed files like /usr/share/doc/slurm-wlm/slurm-wlm-configurator.easy.html
 * We found we needed a web browser do configure the nodes. 
 For example, Slurm comes with instructions and examples as HTML files. 
-So we installed Gnome and Firefox like this ```sudo apt-get install ubuntu-desktop```. 
+We installed Firefox like this ```sudo apt-get install ubuntu-firefox```, probably redundant with the next step. 
+We installed Gnome etc. like this ```sudo apt-get install ubuntu-desktop```, which took an hour. 
 * Slurm
     * Invik [blog](https://www.invik.xyz/work/Slurm-on-Ubuntu-Trusty/) how to install slurm-llnl.
     * [How to Install](https://www.howtoinstall.co/en/ubuntu/trusty/slurm-llnl) for slurm-llnl.
