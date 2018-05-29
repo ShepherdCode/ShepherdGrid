@@ -23,20 +23,20 @@ See this [argument](https://askubuntu.com/questions/53822/how-do-you-run-ubuntu-
 and this [guide](https://help.ubuntu.com/community/ServerGUI).
 
 ## Slrum
-* Much documentation recommends slurm-llnl which runs the [cluster](https://computing.llnl.gov/tutorials/linux_clusters/) at Lawrence Livermore National Labs. 
-That version may be deprecated. We could not find an installer for it for Ubuntu. 
-We used WLM instead. It creates a /etc/slurm-llnl directory so perhaps WLM is son-of-llnl.
-* ```sudo apt-get install slurm-wlm```
-from [packages](https://packages.ubuntu.com/bionic/slurm-wlm) 
-This installed files like /usr/share/doc/slurm-wlm/slurm-wlm-configurator.easy.html
-* We found we needed a web browser do configure the nodes. 
-For example, Slurm comes with instructions and examples as HTML files. 
-We installed Firefox like this ```sudo apt-get install ubuntu-firefox```, probably redundant with the next step. 
-We installed Gnome etc. like this ```sudo apt-get install ubuntu-desktop```, which took an hour. 
 * Slurm
     * Invik [blog](https://www.invik.xyz/work/Slurm-on-Ubuntu-Trusty/) how to install slurm-llnl.
     * [How to Install](https://www.howtoinstall.co/en/ubuntu/trusty/slurm-llnl) for slurm-llnl.
     * [Wiki](https://www.howtoinstall.co/en/ubuntu/trusty/slurm-llnl) how to set up slurm-llnl.
+    * [SchedMD](https://slurm.schedmd.com/download.html)
+    * Version confustion. Much documentation recommends slurm-llnl which runs the [cluster](https://computing.llnl.gov/tutorials/linux_clusters/) at Lawrence Livermore National Labs. That version may be deprecated. We could not find an installer for it for Ubuntu. We used WLM instead. It creates a /etc/slurm-llnl directory so perhaps WLM is son-of-llnl?
+* ```sudo apt-get install slurm```
+* ```sudo apt-get install slurm-wlm```
+This installed files like /usr/share/doc/slurm-wlm/slurm-wlm-configurator.easy.html
+* ```sudo apt-get install munge```
+Already installed.
+* ```sudo apt-get install libopenmpi-dev openmpi-bin```
+* ```sudo apt-get install mysql-server```
+
 
 ## Other software to consider
 * Basics
@@ -44,6 +44,7 @@ We installed Gnome etc. like this ```sudo apt-get install ubuntu-desktop```, whi
 * MPI message passing interface
     * [Wikipedia](https://en.wikipedia.org/wiki/Message_Passing_Interface)
     * javaMPI API [spec](https://www.open-mpi.org/papers/mpi-java-spec/) (2016)
+    * Intel MPI optimized for Intel CPUs (not free)
 * SGE batch control
     * [Wikipedia](https://en.wikipedia.org/wiki/Oracle_Grid_Engine)
     * Open source
