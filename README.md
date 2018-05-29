@@ -11,6 +11,7 @@
 * Win10 overwritten. If we ever needed Windows back, our department has the original Win10 image disk.
 
 ## Ubuntu
+* On Windows, use rufus to format a bootable USB stick.
 * We test installed Ubuntu desktop on one node. The node now has dual boot. Booting into Ubuntu works. (5/14/18)
 * We installed Ubuntu desktop over Windows on 3 nodes: Shep1, Shep2, Shep3. (5/21/18)
 * We installed Unbuntu [Server](https://www.ubuntu.com/download/server) 18.04 LTS from USB to 3 nodes: shep1, shep2, shep3.
