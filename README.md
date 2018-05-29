@@ -38,7 +38,7 @@ We installed Gnome etc. like this ```sudo apt-get install ubuntu-desktop```, whi
     * [How to Install](https://www.howtoinstall.co/en/ubuntu/trusty/slurm-llnl) for slurm-llnl.
     * [Wiki](https://www.howtoinstall.co/en/ubuntu/trusty/slurm-llnl) how to set up slurm-llnl.
 
-## Network software not used
+## Other software to consider
 * Basics
     * Building a simple Beowulf cluster. [How to](https://www-users.cs.york.ac.uk/~mjf/pi_cluster/src/Building_a_simple_Beowulf_cluster.html) by Serrano Pereira.
 * MPI message passing interface
@@ -57,6 +57,8 @@ We installed Gnome etc. like this ```sudo apt-get install ubuntu-desktop```, whi
     * Support for PBS/Torque and others including SGE
 * LCM
     * Linux Cluster Manager [LCM](http://linuxcm.sourceforge.net/)
+* MAAS
+    * Not free. Sold by Ubuntu. Works with Ubuntu for Cloud and OpenStack. Manages the cluster.
 
 ## Contact
 * Professor Jason Miller
