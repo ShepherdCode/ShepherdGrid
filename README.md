@@ -35,7 +35,9 @@ We turned off screen lock.
     * Invik [blog](https://www.invik.xyz/work/Slurm-on-Ubuntu-Trusty/) how to install slurm-llnl.
     * [How to Install](https://www.howtoinstall.co/en/ubuntu/trusty/slurm-llnl) slurm-llnl.
     * [Wiki](https://wiki.archlinux.org/index.php/Slurm) installation and setup.
-    * [SchedMD](https://slurm.schedmd.com/download.html)
+    * SchedMD[docs](https://slurm.schedmd.com/documentation.html) 
+    and [download](https://slurm.schedmd.com/download.html)
+    * [Tutorial](https://computing.llnl.gov/tutorials/moab/) for slurm and moab
 * Version confusion. Much documentation recommends slurm-llnl which runs the [cluster](https://computing.llnl.gov/tutorials/linux_clusters/) at Lawrence Livermore National Labs. That version may be deprecated. We could not find an installer for it for Ubuntu. We used WLM instead. It creates a /etc/slurm-llnl directory so perhaps WLM is son-of-llnl?
 * Install commands
 ```sudo apt-get install slurm```
@@ -45,6 +47,25 @@ Next, ```sudo apt-get install munge```
 said already installed.
 Then ```sudo apt-get install libopenmpi-dev openmpi-bin```
 and ```sudo apt-get install mysql-server```.
+The ```sinfo``` command complains that /etc/slurm-llnl/slurm.conf is missing.
+Files installed include: 
+/usr/share/doc/slurm/README (doc), 
+/usr/share/doc/slurmctrld/slurm-wlm-configurator.html (tool),
+/var/lib/slurm-llnl (state).
+As [documented](https://wiki.archlinux.org/index.php/Slurm), 
+files and directories are owned by uid 64030, user=slurm, group=slurm.
+I had to fix the user on some nodes with ```passwd```, ```usermod -d```, and ```chsh -s```.
+* Configure
+Follow [schedmd](https://slurm.schedmd.com/slurm.conf.html).
+Examples [easy](https://slurm.schedmd.com/configurator.easy.html) or [full](https://slurm.schedmd.com/configurator.html).
+Use FireFox on the Ubuntu node and open
+/usr/share/doc/slurmctrld/slurm-wlm-configurator.html
+which will generate a text file in the same browser window.
+RealMemory must be specified (in megabytes) if memory is a consumable resource; leave it blank for now.
+Choose CR_Socket which seems to mean the smallest consumable unit will be one of our nodes
+(```slurmd -C``` shows 1 socket, 4 cores, 2 threads, 8 cpu).
+Slurm accounting with a database would require path to MySQL conf file; choose text file accounting for now.
+So far we have /etc/slurm-llnl/slurm.conf on shep1; must copy this to every node.
 
 ## Other software to consider
 * Basics
