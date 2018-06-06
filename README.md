@@ -12,15 +12,23 @@
 
 ## Ubuntu
 * On Windows, use rufus to format a bootable USB stick.
-* We test installed Ubuntu desktop on one node. The node now has dual boot. Booting into Ubuntu works. (5/14/18)
-* We installed Ubuntu desktop over Windows on 3 nodes: Shep1, Shep2, Shep3. (5/21/18)
-* We installed Unbuntu [Server](https://www.ubuntu.com/download/server) 18.04 LTS from USB to 3 nodes: shep1, shep2, shep3.
-* With just Ubuntu Server, the computer interface was hard to use: full screen text, no windows, no browsers, no mouse, no cut & paste, no scroll back. We had difficulty configuring slurm. 
+* Try #1. 
+We test installed Ubuntu desktop on one node.
+The node could dual boot. Booting into Ubuntu works. (5/14/18)
+* Try #2. 
+We installed Ubuntu desktop over Windows on 3 nodes: Shep1, Shep2, Shep3. (5/21/18)
+* Try #3.
+We installed Unbuntu [Server](https://www.ubuntu.com/download/server) 18.04 LTS from USB to 3 nodes: shep1, shep2, shep3.
+With just Ubuntu Server, the computer interface was hard to use: 
+full screen text, no windows, no browsers, no mouse, no cut & paste, no scroll back. 
+We had difficulty configuring slurm. 
+* Try #4
 Therefore we installed ubuntu desktop. That probably installed way too much GUI stuff. 
 This is a big install (1 GB, 50 minutes to install) and might not be required on for the remaining nodes. 
 Later, we should pare down the software we install on grid nodes. 
 See this [argument](https://askubuntu.com/questions/53822/how-do-you-run-ubuntu-server-with-a-gui) 
 and this [guide](https://help.ubuntu.com/community/ServerGUI).
+We turned off screen lock.
 
 ## Slrum
 * Slurm
@@ -29,14 +37,14 @@ and this [guide](https://help.ubuntu.com/community/ServerGUI).
     * [Wiki](https://www.howtoinstall.co/en/ubuntu/trusty/slurm-llnl) how to set up slurm-llnl.
     * [SchedMD](https://slurm.schedmd.com/download.html)
     * Version confustion. Much documentation recommends slurm-llnl which runs the [cluster](https://computing.llnl.gov/tutorials/linux_clusters/) at Lawrence Livermore National Labs. That version may be deprecated. We could not find an installer for it for Ubuntu. We used WLM instead. It creates a /etc/slurm-llnl directory so perhaps WLM is son-of-llnl?
-* ```sudo apt-get install slurm```
-* ```sudo apt-get install slurm-wlm```
+* Install commands
+```sudo apt-get install slurm```
+then ```sudo apt-get install slurm-wlm```.
 This installed files like /usr/share/doc/slurm-wlm/slurm-wlm-configurator.easy.html
-* ```sudo apt-get install munge```
-Already installed.
-* ```sudo apt-get install libopenmpi-dev openmpi-bin```
-* ```sudo apt-get install mysql-server```
-
+Next, ```sudo apt-get install munge```
+said already installed.
+Then ```sudo apt-get install libopenmpi-dev openmpi-bin```
+and ```sudo apt-get install mysql-server```.
 
 ## Other software to consider
 * Basics
