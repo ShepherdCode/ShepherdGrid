@@ -54,7 +54,11 @@ Files installed include:
 /var/lib/slurm-llnl (state).
 As [documented](https://wiki.archlinux.org/index.php/Slurm), 
 files and directories are owned by uid 64030, user=slurm, group=slurm.
-I had to fix the user on some nodes with ```passwd```, ```usermod -d```, and ```chsh -s```.
+The slurm install creates a non-interactive user 'slurm' to own files.
+This user shows up on the Ubuntu bootup and, confused, I changed slurm to a normal user.
+See ```passwd```, ```usermod -d```, and ```chsh -s``` and others 
+at Linux user [management](http://www.comptechdoc.org/os/linux/usersguide/linux_ugusers.html).
+Make sure the user has the same uid as owns the files!
 * Configure
 Follow [schedmd](https://slurm.schedmd.com/slurm.conf.html).
 Examples [easy](https://slurm.schedmd.com/configurator.easy.html) or [full](https://slurm.schedmd.com/configurator.html).
