@@ -32,7 +32,7 @@ We turned off screen lock and turned on auto login.
 
 ## Slurm
 
-* Slurm links
+* Slurm links.
     * Invik [blog](https://www.invik.xyz/work/Slurm-on-Ubuntu-Trusty/) how to install slurm-llnl.
     * [How to Install](https://www.howtoinstall.co/en/ubuntu/trusty/slurm-llnl) slurm-llnl.
     * [Wiki](https://wiki.archlinux.org/index.php/Slurm) installation and setup.
@@ -66,7 +66,7 @@ at Linux user [management](http://www.comptechdoc.org/os/linux/usersguide/linux_
 Make sure the user has the same uid as owns the files!
 The slurm user needs /usr/sbin in his path.
 
-* Configure
+* Configure.
 Follow [schedmd](https://slurm.schedmd.com/slurm.conf.html).
 Examples [easy](https://slurm.schedmd.com/configurator.easy.html) or [full](https://slurm.schedmd.com/configurator.html).
 Use FireFox on the Ubuntu node and open
@@ -80,7 +80,7 @@ We created /etc/slurm-llnl/slurm.conf with shep1 as control node.
 We copied the same file to every node using scp and the node's IP4 address.
 Not done yet: ldconfig -n <library_location> to gain access to slurm APIs.
 
-* Startup commands
+* Startup commands.
 We tried running as user=slurm and user=shepherd but the log complains "not running as root".
 Run ```sudo slrmctld``` on control node and ```sudo slurmd``` on worker nodes.
 We cannot run slurmd on the control node unless we 
