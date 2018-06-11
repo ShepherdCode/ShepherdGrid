@@ -31,6 +31,7 @@ and this [guide](https://help.ubuntu.com/community/ServerGUI).
 We turned off screen lock and turned on auto login.
 
 ## Slurm
+
 * Slurm links
     * Invik [blog](https://www.invik.xyz/work/Slurm-on-Ubuntu-Trusty/) how to install slurm-llnl.
     * [How to Install](https://www.howtoinstall.co/en/ubuntu/trusty/slurm-llnl) slurm-llnl.
@@ -39,8 +40,11 @@ We turned off screen lock and turned on auto login.
     and [download](https://slurm.schedmd.com/download.html)
     and [FAQ](https://slurm.schedmd.com/faq.html#cred_invalid).
     * [Tutorial](https://computing.llnl.gov/tutorials/moab/) for slurm and moab
-* Version confusion. Much documentation recommends slurm-llnl which runs the [cluster](https://computing.llnl.gov/tutorials/linux_clusters/) at Lawrence Livermore National Labs. That version may be deprecated. We could not find an installer for it for Ubuntu. We used WLM instead. It creates a /etc/slurm-llnl directory so perhaps WLM is son-of-llnl?
-* Install commands
+
+* Version confusion. 
+Much documentation recommends slurm-llnl which runs the [cluster](https://computing.llnl.gov/tutorials/linux_clusters/) at Lawrence Livermore National Labs. That version may be deprecated. We could not find an installer for it for Ubuntu. We used WLM instead. It creates a /etc/slurm-llnl directory so perhaps WLM is son-of-llnl?
+
+* Install commands.
 ```sudo apt-get install slurm```
 then ```sudo apt-get install slurm-wlm```.
 This installed files like /usr/share/doc/slurm-wlm/slurm-wlm-configurator.easy.html
@@ -61,6 +65,7 @@ See ```passwd```, ```usermod -d```, ```usermod -u```, and ```chsh -s``` and othe
 at Linux user [management](http://www.comptechdoc.org/os/linux/usersguide/linux_ugusers.html).
 Make sure the user has the same uid as owns the files!
 The slurm user needs /usr/sbin in his path.
+
 * Configure
 Follow [schedmd](https://slurm.schedmd.com/slurm.conf.html).
 Examples [easy](https://slurm.schedmd.com/configurator.easy.html) or [full](https://slurm.schedmd.com/configurator.html).
@@ -74,6 +79,7 @@ Slurm accounting with a database would require path to MySQL conf file; choose t
 We created /etc/slurm-llnl/slurm.conf with shep1 as control node.
 We copied the same file to every node using scp and the node's IP4 address.
 Not done yet: ldconfig -n <library_location> to gain access to slurm APIs.
+
 * Startup commands
 We tried running as user=slurm and user=shepherd but the log complains "not running as root".
 Run ```sudo slrmctld``` on control node and ```sudo slurmd``` on worker nodes.
