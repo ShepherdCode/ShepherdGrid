@@ -37,6 +37,7 @@ We turned off screen lock and turned on auto login.
     * [Wiki](https://wiki.archlinux.org/index.php/Slurm) installation and setup.
     * SchedMD [docs](https://slurm.schedmd.com/documentation.html) 
     and [download](https://slurm.schedmd.com/download.html)
+    and [FAQ](https://slurm.schedmd.com/faq.html#cred_invalid).
     * [Tutorial](https://computing.llnl.gov/tutorials/moab/) for slurm and moab
 * Version confusion. Much documentation recommends slurm-llnl which runs the [cluster](https://computing.llnl.gov/tutorials/linux_clusters/) at Lawrence Livermore National Labs. That version may be deprecated. We could not find an installer for it for Ubuntu. We used WLM instead. It creates a /etc/slurm-llnl directory so perhaps WLM is son-of-llnl?
 * Install commands
@@ -59,6 +60,7 @@ This user shows up on the Ubuntu bootup and, confused, I changed slurm to a norm
 See ```passwd```, ```usermod -d```, ```usermod -u```, and ```chsh -s``` and others 
 at Linux user [management](http://www.comptechdoc.org/os/linux/usersguide/linux_ugusers.html).
 Make sure the user has the same uid as owns the files!
+The slurm user needs /usr/sbin in his path.
 * Configure
 Follow [schedmd](https://slurm.schedmd.com/slurm.conf.html).
 Examples [easy](https://slurm.schedmd.com/configurator.easy.html) or [full](https://slurm.schedmd.com/configurator.html).
@@ -73,9 +75,19 @@ We created /etc/slurm-llnl/slurm.conf with shep1 as control node.
 We copied the same file to every node using scp and the node's IP4 address.
 Not done yet: ldconfig -n <library_location> to gain access to slurm APIs.
 * Startup commands
-On the control node, we can run slurmctld from user=slurm.
-We cannot run slurmd and may need to adjust configuration.
-See https://www.mail-archive.com/slurm-dev@schedmd.com/msg10758.html
+We tried running as user=slurm and user=shepherd but the log complains "not running as root".
+Run ```sudo slrmctld``` on control node and ```sudo slurmd``` on worker nodes.
+We cannot run slurmd on the control node unless we 
+[adjust configuration](https://www.mail-archive.com/slurm-dev@schedmd.com/msg10758.html).
+Initial errors. 
+```sacct``` says "/var/log/slurm_jobacct.log: no such file" (so we created one).
+```squeue``` says "Unable to resolve shep1: unknown host".
+```smap``` says "slurm_load_node: Unable to contact slurm controller (connect failure)".
+See errors in /var/log/slurm-llnl/slurmctld.log file.
+In slurm.conf, the ControlMachine must be a name like 'shep1' not an IP address.
+Slurm ctl daemon is running but we get authentication errors.
+It seems to be contacting other IP addresses on this switch (10.1.200.1:44140).
+Command ```squeue``` works on control node but on workers, "Unable to establish control machine address."
 
 ## Other software to consider
 * Basics
