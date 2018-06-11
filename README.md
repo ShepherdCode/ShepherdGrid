@@ -28,9 +28,9 @@ This is a big install (1 GB, 50 minutes to install) and might not be required on
 Later, we should pare down the software we install on grid nodes. 
 See this [argument](https://askubuntu.com/questions/53822/how-do-you-run-ubuntu-server-with-a-gui) 
 and this [guide](https://help.ubuntu.com/community/ServerGUI).
-We turned off screen lock.
+We turned off screen lock and turned on auto login.
 
-## Slrum
+## Slurm
 * Slurm links
     * Invik [blog](https://www.invik.xyz/work/Slurm-on-Ubuntu-Trusty/) how to install slurm-llnl.
     * [How to Install](https://www.howtoinstall.co/en/ubuntu/trusty/slurm-llnl) slurm-llnl.
@@ -56,7 +56,7 @@ As [documented](https://wiki.archlinux.org/index.php/Slurm),
 files and directories are owned by uid 64030, user=slurm, group=slurm.
 The slurm install creates a non-interactive user 'slurm' to own files.
 This user shows up on the Ubuntu bootup and, confused, I changed slurm to a normal user.
-See ```passwd```, ```usermod -d```, and ```chsh -s``` and others 
+See ```passwd```, ```usermod -d```, ```usermod -u```, and ```chsh -s``` and others 
 at Linux user [management](http://www.comptechdoc.org/os/linux/usersguide/linux_ugusers.html).
 Make sure the user has the same uid as owns the files!
 * Configure
@@ -69,7 +69,8 @@ RealMemory must be specified (in megabytes) if memory is a consumable resource; 
 Choose CR_Socket which seems to mean the smallest consumable unit will be one of our nodes
 (```slurmd -C``` shows 1 socket, 4 cores, 2 threads, 8 cpu).
 Slurm accounting with a database would require path to MySQL conf file; choose text file accounting for now.
-So far we have /etc/slurm-llnl/slurm.conf on shep1; must copy this to every node.
+We created /etc/slurm-llnl/slurm.conf with shep1 as control node.
+We copied the same file to every node using scp and the node's IP4 address.
 
 ## Other software to consider
 * Basics
