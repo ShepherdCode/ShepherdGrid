@@ -93,7 +93,9 @@ See errors in /var/log/slurm-llnl/slurmctld.log file.
 In slurm.conf, the ControlMachine must be a name like 'shep1' not an IP address.
 Slurm ctl daemon is running but we get authentication errors.
 It seems to be contacting other IP addresses on this switch (10.1.200.1:44140).
-Command ```squeue``` works on control node but on workers, "Unable to establish control machine address."
+Command ```squeue``` works on control node with ControlMachine=shep1.
+but on workers with ControlMachine=shep1: "Unable to establish control machine address."
+On workers with ControlMachine=<IP addr>: ```sinfo``` says "slurm_load_partitions: Zero bytes were transmitted or received".
 
 ## Other software to consider
 * Basics
