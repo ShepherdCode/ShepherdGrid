@@ -35,7 +35,7 @@ We turned off screen lock and turned on auto login.
     * Invik [blog](https://www.invik.xyz/work/Slurm-on-Ubuntu-Trusty/) how to install slurm-llnl.
     * [How to Install](https://www.howtoinstall.co/en/ubuntu/trusty/slurm-llnl) slurm-llnl.
     * [Wiki](https://wiki.archlinux.org/index.php/Slurm) installation and setup.
-    * SchedMD[docs](https://slurm.schedmd.com/documentation.html) 
+    * SchedMD [docs](https://slurm.schedmd.com/documentation.html) 
     and [download](https://slurm.schedmd.com/download.html)
     * [Tutorial](https://computing.llnl.gov/tutorials/moab/) for slurm and moab
 * Version confusion. Much documentation recommends slurm-llnl which runs the [cluster](https://computing.llnl.gov/tutorials/linux_clusters/) at Lawrence Livermore National Labs. That version may be deprecated. We could not find an installer for it for Ubuntu. We used WLM instead. It creates a /etc/slurm-llnl directory so perhaps WLM is son-of-llnl?
@@ -71,6 +71,11 @@ Choose CR_Socket which seems to mean the smallest consumable unit will be one of
 Slurm accounting with a database would require path to MySQL conf file; choose text file accounting for now.
 We created /etc/slurm-llnl/slurm.conf with shep1 as control node.
 We copied the same file to every node using scp and the node's IP4 address.
+Not done yet: ldconfig -n <library_location> to gain access to slurm APIs.
+* Startup commands
+On the control node, we can run slurmctld from user=slurm.
+We cannot run slurmd and may need to adjust configuration.
+See https://www.mail-archive.com/slurm-dev@schedmd.com/msg10758.html
 
 ## Other software to consider
 * Basics
