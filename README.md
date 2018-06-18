@@ -41,6 +41,7 @@ and [download](https://slurm.schedmd.com/download.html)
 and [FAQ](https://slurm.schedmd.com/faq.html#cred_invalid).
 * [Tutorial](https://computing.llnl.gov/tutorials/moab/) for slurm and moab
 * Technical [FAQ](http://www.sdsc.edu/~hocks/FG/CMT.slurm.problems.html)
+* Sample slurm.conf [file](https://github.com/neurokernel/gpu-cluster-config/blob/master/slurm.conf)
 
 ### Slurm Versions
 Much documentation recommends slurm-llnl which runs the [cluster](https://computing.llnl.gov/tutorials/linux_clusters/) at Lawrence Livermore National Labs. That version may be deprecated. We could not find an installer for it for Ubuntu. We used WLM instead. It creates a /etc/slurm-llnl directory so perhaps WLM is son-of-llnl?
@@ -90,7 +91,7 @@ Not done yet: ldconfig -n <library_location> to gain access to slurm APIs.
 In slurm.conf, the ControlMachine must be a name like 'shep1' not an IP address.
 
 ### Start slurm control node
-Run ```sudo slrmctld``` on control node.
+Run ```sudo /etc/init.d/slrmctld start``` on control node.
 Do not run as user=slurm; the log complains "not running as root".
 Run as user=shepherd with sudo.
 
@@ -125,7 +126,7 @@ If we start the worker nodes first, their logs show errors about not infing the 
 We found it best to start one worker first.
 
 ### Start slurm worker nodes
-Run ```sudo slurmd``` on worker nodes.
+Run ```sudo /etc/init.d/slurmd start``` on worker nodes.
 Try ```scontrol show config``` to see every setting. 
 For example, search the output for "Control" to see the control node name.
 
@@ -137,14 +138,32 @@ It looks like slurmd on the worker also runs slurmctld
 because we get a slurmctld.log file that says "starting slurmctld version 17.11.2"
 and "this host (shep3/shep3) is not a valid controller".
 
+Our slurmd logs indicated error: domain socket directory.
+We made the error go away by creating a /var/spool/slurmd directory user=group=slurm.
+The log was cleaner after the next ```sudo /etc/init.d/slurmd restart``` 
+although slurm ```sinfo``` still considered the node to be down.
+
 ### Submit slurm job
 Run ```sbatch test_script.sh``` on any worker node.
+Run ```squeue``` to track and ```scancel <job>``` to kill.
 
-Running ```sbatch test_script.sh``` on control node does not work: Unable to contact slurm controller.
+Running ```sbatch``` on control node does not work: Unable to contact slurm controller.
+Must use a worker node. Is there such a thing as a submitter node?
 
 My first job sat there with Job State = Pending (ST=PD).
 The log on control node indicated unable to find shep3.
 The command ```scontrol show node shep3``` works on the worker but not the control node.
+We submitted the test_script.sh script but it remained in state=pending.
+The ```sinfo``` command says all node states are down.
+The ```scontrol show node shep3``` command says (among other things)
+Reason=NO NETWORK ADDRESS FOUND (plus the time).
+The recommended solution ```scontrol update nodename=shep3 state=resume``` actually worked!
+The node became "idle" then "alloc".
+The pending job with state=PD entered state=R.
+It generated its output file in the current directory.
+However, the finished job remained in the queue with state=R forever.
+Also, the slurmd log says Invalid host-index -1 for Job 6.
+Googling that error, I can only find a suggested code patch from 2012.
 
 ## Other software to consider
 * Basics
