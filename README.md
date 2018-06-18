@@ -40,6 +40,7 @@ We turned off screen lock and turned on auto login.
 and [download](https://slurm.schedmd.com/download.html)
 and [FAQ](https://slurm.schedmd.com/faq.html#cred_invalid).
 * [Tutorial](https://computing.llnl.gov/tutorials/moab/) for slurm and moab
+* Technical [FAQ](http://www.sdsc.edu/~hocks/FG/CMT.slurm.problems.html)
 
 ### Slurm Versions
 Much documentation recommends slurm-llnl which runs the [cluster](https://computing.llnl.gov/tutorials/linux_clusters/) at Lawrence Livermore National Labs. That version may be deprecated. We could not find an installer for it for Ubuntu. We used WLM instead. It creates a /etc/slurm-llnl directory so perhaps WLM is son-of-llnl?
@@ -125,6 +126,8 @@ We found it best to start one worker first.
 
 ### Start slurm worker nodes
 Run ```sudo slurmd``` on worker nodes.
+Try ```scontrol show config``` to see every setting. 
+For example, search the output for "Control" to see the control node name.
 
 On workers with ControlMachine=shep1, we get error "Unable to establish control machine address"
 and slurmd.log shows Unable to resolve "shep1".
@@ -133,6 +136,15 @@ We fixed this by also specifying ControlAddr=10.200.0.3 in slurm.conf on every n
 It looks like slurmd on the worker also runs slurmctld 
 because we get a slurmctld.log file that says "starting slurmctld version 17.11.2"
 and "this host (shep3/shep3) is not a valid controller".
+
+### Submit slurm job
+Run ```sbatch test_script.sh``` on any worker node.
+
+Running ```sbatch test_script.sh``` on control node does not work: Unable to contact slurm controller.
+
+My first job sat there with Job State = Pending (ST=PD).
+The log on control node indicated unable to find shep3.
+The command ```scontrol show node shep3``` works on the worker but not the control node.
 
 ## Other software to consider
 * Basics
