@@ -32,7 +32,7 @@ We turned off screen lock and turned on auto login.
 
 ## Slurm
 
-### Slurm links.
+### Slurm links
 * Invik [blog](https://www.invik.xyz/work/Slurm-on-Ubuntu-Trusty/) how to install slurm-llnl.
 * [How to Install](https://www.howtoinstall.co/en/ubuntu/trusty/slurm-llnl) slurm-llnl.
 * [Wiki](https://wiki.archlinux.org/index.php/Slurm) installation and setup.
@@ -41,10 +41,10 @@ and [download](https://slurm.schedmd.com/download.html)
 and [FAQ](https://slurm.schedmd.com/faq.html#cred_invalid).
 * [Tutorial](https://computing.llnl.gov/tutorials/moab/) for slurm and moab
 
-### Slurm Versions. 
+### Slurm Versions
 Much documentation recommends slurm-llnl which runs the [cluster](https://computing.llnl.gov/tutorials/linux_clusters/) at Lawrence Livermore National Labs. That version may be deprecated. We could not find an installer for it for Ubuntu. We used WLM instead. It creates a /etc/slurm-llnl directory so perhaps WLM is son-of-llnl?
 
-### Slurm Install.
+### Slurm Install
 ```sudo apt-get install slurm```
 then ```sudo apt-get install slurm-wlm```.
 The command ```sudo apt-get install munge``` said already installed.
@@ -71,7 +71,7 @@ These Linux user
 commands are helpful:
 ```passwd```, ```usermod -d```, ```usermod -u```, and ```chsh -s``` and others.
 
-### Slurm Configure.
+### Slurm Configure
 See our slurm.conf examples in this repository.
 
 Follow [schedmd](https://slurm.schedmd.com/slurm.conf.html).
@@ -88,7 +88,7 @@ We copied the same file to every node using scp and the node's IP4 address.
 Not done yet: ldconfig -n <library_location> to gain access to slurm APIs.
 In slurm.conf, the ControlMachine must be a name like 'shep1' not an IP address.
 
-### Start slurm control node.
+### Start slurm control node
 Run ```sudo slrmctld``` on control node.
 Do not run as user=slurm; the log complains "not running as root".
 Run as user=shepherd with sudo.
@@ -109,7 +109,7 @@ The errors indicate the daemon is contacting other IP addresses on this switch (
 Or it may be looking for "Nodes=shep\[2-3]" as specified in the conf file.
 So, the control node may be working ok.
 The command ```sinfo``` works and shows zero nodes on partition1.
-Munge is a LLNL accounting + authentication + security module that we have not installed.
+Munge is a LLNL accounting + authentication + security module.
 We disabled it with AuthType=auth/none in the conf file.
 
 In theory, the control node can also be a worker node.
@@ -123,12 +123,13 @@ If we start the control node first, the log shows errors about not finding worke
 If we start the worker nodes first, their logs show errors about not infing the controller.
 We found it best to start one worker first.
 
-### Start slurm worker nodes.
+### Start slurm worker nodes
 Run ```sudo slurmd``` on worker nodes.
 
 On workers with ControlMachine=shep1, we get error "Unable to establish control machine address"
 and slurmd.log shows Unable to resolve "shep1".
-We fixed this by also specifying ControlAddr=10.200.0.3 in slurm.conf.
+We fixed this by also specifying ControlAddr=10.200.0.3 in slurm.conf on every node.
+
 It looks like slurmd on the worker also runs slurmctld 
 because we get a slurmctld.log file that says "starting slurmctld version 17.11.2"
 and "this host (shep3/shep3) is not a valid controller".
