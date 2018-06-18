@@ -79,28 +79,51 @@ Slurm accounting with a database would require path to MySQL conf file; choose t
 We created /etc/slurm-llnl/slurm.conf with shep1 as control node.
 We copied the same file to every node using scp and the node's IP4 address.
 Not done yet: ldconfig -n <library_location> to gain access to slurm APIs.
-
-* Startup commands.
-We tried running as user=slurm and user=shepherd but the log complains "not running as root".
-Run ```sudo slrmctld``` on control node and ```sudo slurmd``` on worker nodes.
-We cannot run slurmd on the control node unless we 
-[adjust configuration](https://www.mail-archive.com/slurm-dev@schedmd.com/msg10758.html).
-Initial errors. 
-```sacct``` says "/var/log/slurm_jobacct.log: no such file" (so we created one).
-```squeue``` says "Unable to resolve shep1: unknown host".
-```smap``` says "slurm_load_node: Unable to contact slurm controller (connect failure)".
-See errors in /var/log/slurm-llnl/slurmctld.log file.
 In slurm.conf, the ControlMachine must be a name like 'shep1' not an IP address.
-Slurm ctl daemon is running but we get authentication errors.
-It seems to be contacting other IP addresses on this switch (10.1.200.1:44140).
-Command ```squeue``` works on control node with ControlMachine=shep1.
-but on workers with ControlMachine=shep1: "Unable to establish control machine address."
-On workers with ControlMachine=<IP addr>: ```sinfo``` 
-says "slurm_load_partitions: Zero bytes were transmitted or received"
-(this error was also saved in the slurmd.log file).
-It looks like the worker tries to be a control node: 
-complaints in slurmctld.log say "this host (shep3/shep3) is not a valid controller."
 
+* Startup control node.
+Run ```sudo slrmctld``` on control node.
+Do not run as user=slurm; the log complains "not running as root".
+Run as user=shepherd with sudo.
+
+We encountered these problems at first.
+Intially, ```sacct``` failed saying "/var/log/slurm_jobacct.log no such file"; 
+creating the file fixed the error.
+Initially, ```squeue``` said "Unable to resolve shep1: unknown host";
+this now works (shows empty queue) with a configuration file that says ControlMachine=shep1 and no ControlAddr.
+Initially, ```smap``` said "slurm_load_node: Unable to contact slurm controller (connect failure)";
+this now works (shows two empty boxes).
+However, we always get the same errors in /var/log/slurm-llnl/slurmctld.log file:
+"slurm_unpack_received_msg: Protocol authentication error", 
+"Munge decode failed: Invalid credential",
+"slurm_unpack_received_msg: MESSAGE_NODE_REGISTRATION_STATUS has authentication error: Invalid credential",
+"slurm_receive_msg \[10.1.200.0:nnnn]: Unspecified error".
+The errors indicate the daemon is contacting other IP addresses on this switch (e.g. 10.1.200.1:44140).
+Or it may be looking for "Nodes=shep\[2-3]" as specified in the conf file.
+So, the control node may be working ok.
+The command ```sinfo``` works and shows zero nodes on partition1.
+Munge is a LLNL accounting + authentication + security module that we have not installed.
+We disabled it with AuthType=auth/none in the conf file.
+
+In theory, the control node can also be a worker node.
+We would run slurmd as well as slurmctld on the same node.
+We would have to adjust the NodeName setting in the slurm.conf file.
+If we run ```sudo slurmd``` on control node as is , it complains "Unable to determine this slurmd's NodeName".
+This page shows how to  
+[adjust configuration](https://www.mail-archive.com/slurm-dev@schedmd.com/msg10758.html).
+
+If we start the control node first, the log shows errors about not finding workers.
+If we start the worker nodes first, their logs show errors about not infing the controller.
+We found it best to start one worker first.
+
+* Startup worker nodes.
+Run ```sudo slurmd``` on worker nodes.
+On workers with ControlMachine=shep1, we get error "Unable to establish control machine address"
+and slurmd.log shows Unable to resolve "shep1".
+We fixed this by also specifying ControlAddr=10.200.0.3 in slurm.conf.
+It looks like slurmd on the worker also runs slurmctld 
+because we get a slurmctld.log file that says "starting slurmctld version 17.11.2"
+and "this host (shep3/shep3) is not a valid controller".
 
 ## Other software to consider
 * Basics
