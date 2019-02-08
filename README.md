@@ -165,6 +165,14 @@ However, the finished job remained in the queue with state=R forever.
 Also, the slurmd log says Invalid host-index -1 for Job 6.
 Googling that error, I can only find a suggested code patch from 2012.
 
+### Finally, success!
+We wrote a script to report the node name.
+We had the master node give it to two worker nodes. 
+It worked! 
+Unfortunately, we were so excited, we didn't write down the change that made it work.
+However, the 3-node grid is currently configured to run that script.
+All we have to do is start it up.
+
 ## Other software to consider
 * Basics
     * Building a simple Beowulf cluster. [How to](https://www-users.cs.york.ac.uk/~mjf/pi_cluster/src/Building_a_simple_Beowulf_cluster.html) by Serrano Pereira.
